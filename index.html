@@ -15,12 +15,12 @@
 <body>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
     <div class="calculator">
-        <input type="text" class="output-screen" value="" disabled />
+        <input type="text" class="output" value="" disabled />
         
         <div class="display-keys">
-            <button  class="operator" value="√" onclick="calculator.display.value += '√'">√</button>
-            <button  class="operator" value="x&#178" onclick="calculator.display.value += '&#178'">x&#178;</button>
-            <button  class="operator" value="fa fa-arrow-left" onclick=""><i class="fa fa-arrow-left"></i></button>
+            <button  class="operator" value="√" >√</button>
+            <button  class="operator" value="x&#178" >x&#178;</button>
+            <button  class="operator" value="fa fa-arrow-left"><i class="fa fa-arrow-left"></i></button>
             <button  class="operator" value="/">&divide;</button>  
     
           <button  value="7">7</button>
@@ -101,8 +101,8 @@ const performCalculation = {
   '+': (firstValue, secondOperand) => firstValue + secondOperand,
   '-': (firstValue, secondOperand) => firstValue - secondOperand,
   '√': (firstValue, secondOperand) => Math.sqrt(secondOperand).toFixed(3),
-  'x&#178': (firstValue, secondOperand) => secondOperand*secondOperand,
-  'fa fa-arrow-left': (firstValue, secondOperand) => firstValue=0,
+  'x&#178': (firstValue, secondOperand) => Math.pow(secondOperand, 2),
+  'fa fa-arrow-left': (firstValue, secondOperand) => secondOperand=null,
   '=': (firstValue, secondOperand) => secondOperand
 };
  
@@ -114,7 +114,7 @@ function resetCalculator() {
 }
  
 function updateDisplay() {
-  const display = document.querySelector('.output-screen');
+  const display = document.querySelector('.output');
   display.value = calculator.outputValue;
 }
  
